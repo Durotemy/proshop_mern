@@ -53,6 +53,8 @@ const OrderScreen = ({ match, history }) => {
 
     const addPayPalScript = async () => {
       const { data: clientId } = await axios.get('/api/config/paypal')
+      // const res = await axios.get('/api/config/paypal')
+      console.log("res", clientId)
       const script = document.createElement('script')
       script.type = 'text/javascript'
       script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`
@@ -77,7 +79,7 @@ const OrderScreen = ({ match, history }) => {
   }, [dispatch, orderId, successPay, successDeliver, order])
 
   const successPaymentHandler = (paymentResult) => {
-    console.log(paymentResult)
+    // console.log(paymentResult)
     dispatch(payOrder(orderId, paymentResult))
   }
 
